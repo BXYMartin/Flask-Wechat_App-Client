@@ -1,6 +1,33 @@
 <view class='page'>
-  <text>{{test}}</text>
-  <button bindtap='change'>修改test为hello world!</button>
-  <text>{{person.name}}</text>
-  <button bindtap='changePerson'>修改人名为fxjzzyo</button>
+  <h1>测试{{block}} 音频{{trail}}</h1>
+  <div>
+  <audio wx:if="{{display}}" name="{{name}}" author="{{author}}" src="{{src}}" id="testAudio" bindplay="funplay" bindpause="funpause" bindtimeupdate="funtimeupdate" bindended="funended" binderror="funerror"></audio>
+   <button wx:if="{{display}}" bindtap="audioPlay">▶️ {{play}}</button>
+  <h1 wx:if="{{!display}}">音频播放完毕，请作答并前往下一题</h1>
+  </div>
+
+  <div>
+  <text>第一个字的拼音</text>
+  <input bindinput="pinyin" value="{{input}}" id="1"></input>
+
+  <text>第二个字的拼音</text>
+  <input bindinput="pinyin" value="{{input}}" id="2"></input>
+
+  <text>第三个字的拼音</text>
+  <input bindinput="pinyin" value="{{input}}" id="3"></input>
+
+    <text>第四个字的拼音</text>
+    <input bindinput="pinyin" value="{{input}}" id="4"></input>
+
+    <text>第五个字的拼音</text>
+   <input bindinput="pinyin" value="{{input}}" id="5"></input>
+
+    <text>第六个字的拼音</text>
+    <input bindinput="pinyin" value="{{input}}" id="6"></input>
+  </div>
+  <button bindtap='next'>下一个</button>
+
+ <button style="opacity: 0.1" bindtap='unlock'>调试</button>
+<span wx:if="{{click >= 10}}">{{chinese}}</span>
+<span wx:if="{{click >= 10}}">{{pinyin}}</span>
 </view>

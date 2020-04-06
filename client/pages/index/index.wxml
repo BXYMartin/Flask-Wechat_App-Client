@@ -8,10 +8,11 @@
     </block>
   </view>
   <text>\n</text>
-  <button class="func_button" bindtap="bindEnglish">挑战听力极限</button>
+  <button class="func_button" bindtap="bindExperiment">开始实验</button>
   <button class="func_button" bindtap="bindMoe">排行榜</button>
   <button class="func_button" bindtap="bindHelp">原理讲解</button>
   <text>\n</text>
-  <text>283136745@qq.com</text>
-  <text>茶末</text>
+  
+  <text>张纯洁的毕业设计</text>
+  <text style="opacity: 0.2; font-size: 12px">Created By BXYMartin</text>
 </view>

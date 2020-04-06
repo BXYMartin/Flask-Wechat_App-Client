@@ -1,2 +1,6 @@
 <!--pages/moe.wxml-->
-<text>pages/moe.wxml</text>
+<view class='page'>
+<h1>提交成功</h1>
+<text>感谢您的参与！</text>
+</view>
+

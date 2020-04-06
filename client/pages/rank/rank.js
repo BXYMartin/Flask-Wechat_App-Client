@@ -9,6 +9,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({ title: '噪音环境下的语音测试' });
     var that=this
     wx.request({
       url: app.globalData.server + 'get_rank',
@@ -18,7 +19,8 @@ Page({
       success: function (res) {
         that.setData({ user_list: res.data})
       },
-      fail: function () {
+      fail: function (e) {
+        console.log(e);
         wx.showToast({
           title: '排名获取失败',
           icon: 'none',

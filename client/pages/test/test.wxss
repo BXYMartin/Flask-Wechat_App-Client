@@ -1,1 +1,30 @@
 /* pages/test/test.wxss */
+h1 {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+div {
+  clear: both;
+  margin: 20px;
+  display: block;
+}
+.func_button{
+  width:90%;
+  margin: 0 auto;
+}
+audio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+text {
+  margin: 10px;
+}
+input {
+  margin: 5px;
+  border: 1px solid #444;
+}

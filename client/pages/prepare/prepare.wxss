@@ -1,0 +1,31 @@
+/* pages/prepare/prepare.wxss */
+h1 {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+span {
+  display: block;
+  margin: 10px;
+}
+
+.func_button{
+  width:90%;
+  margin: 10px auto;
+}
+.word {
+  width: 16%;
+  float: left;
+  margin: 3px 2%;
+  display: flex;
+}
+.block {
+  margin-top: 10px;
+  border: 2px solid #666;
+  border-radius: 10px;
+}
+view {
+  clear: both;
+}

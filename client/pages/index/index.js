@@ -9,8 +9,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  //事件处理函数
-  bindEnglish: function() {
+  bindExperiment: function() {
     if (app.globalData.userInfo==null){
       wx.showToast({
         title: '请先点击获取头像昵称',
@@ -20,7 +19,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: '../english/english',
+      url: '../experiment/experiment',
     })
   },
   bindMoe: function () {
@@ -35,6 +34,7 @@ Page({
   },
 
   onLoad: function () {
+    wx.setNavigationBarTitle({ title: '噪音环境下的语音测试' });
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

@@ -8,12 +8,16 @@
     "pages/article/article",
     "pages/rank/rank",
     "pages/help/help",
-    "pages/study/study"
+    "pages/study/study",
+    "pages/experiment/experiment",
+    "pages/prepare/prepare",
+    "pages/begin/begin"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
