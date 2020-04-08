@@ -13,7 +13,20 @@ App({
     user_score_info:null,
     cur_article_info:null,
     answer: {},
+    trail_seq: [],
+    block_seq: [],
+    random: true,
     block: 1,
-    trail: 1
+    trail: 1,
+    total_block: 4,
+    total_trail: 30,
+    finished: false,
+    correct_accord: 0,
+    total_accord: 0,
+    correct_inaccord: 0,
+    total_inaccord: 0,
+    precise: false,
+    word_double: [],
+    word_triple: []
   }
 })

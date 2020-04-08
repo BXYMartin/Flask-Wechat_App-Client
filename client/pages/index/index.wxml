@@ -10,9 +10,9 @@
   <text>\n</text>
   <button class="func_button" bindtap="bindExperiment">开始实验</button>
   <button class="func_button" bindtap="bindMoe">排行榜</button>
-  <button class="func_button" bindtap="bindHelp">原理讲解</button>
+  <button class="func_button" bindtap="bindHelp">设置</button>
   <text>\n</text>
-  
+  <image src="/images/grad.png" style="width: 200px; height: 200px" />
   <text>张纯洁的毕业设计</text>
   <text style="opacity: 0.2; font-size: 12px">Created By BXYMartin</text>
 </view>

@@ -28,3 +28,8 @@ input {
   margin: 5px;
   border: 1px solid #444;
 }
+
+span {
+  display: block;
+  margin: 10px;
+}

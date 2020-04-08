@@ -1,15 +1,13 @@
 <!--pages/rank/rank.wxml-->
 <view class="table">
   <view class="tr">
-    <view class="th">头像</view>
     <view class="th">昵称</view>
     <view class="th">分数</view>
+    <view class="th">总数</view>
   </view>
   <view class="tr" wx:for="{{user_list}}">
-    <view class='td'> 
-      <image class="userinfo-avatar" src="{{item.img_src}}" mode="cover"></image>
-    </view>
     <view class="td" style="line-height:105rpx"> {{item.name}} </view>
     <view class="td" style="line-height:105rpx"> {{item.score}} </view>
+    <view class="td" style="line-height:105rpx"> {{item.total}} </view>
   </view>
 </view>

@@ -30,4 +30,8 @@
  <button style="opacity: 0.1" bindtap='unlock'>调试</button>
 <span wx:if="{{click >= 10}}">{{chinese}}</span>
 <span wx:if="{{click >= 10}}">{{pinyin}}</span>
+<span wx:if="{{click >= 10}}">Accord: {{correct_accord}}/{{total_accord}}</span>
+<span wx:if="{{click >= 10}}">Inaccord: {{correct_inaccord}}/{{total_inaccord}}</span>
+<span wx:if="{{click >= 10}}">{{answer}}</span>
+<span wx:if="{{click >= 10}}">{{block_seq}}.{{trail_seq}}</span>
 </view>

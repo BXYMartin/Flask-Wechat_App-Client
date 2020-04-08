@@ -1,6 +1,6 @@
 /* pages/prepare/prepare.wxss */
 h1 {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
   text-align: center;
   width: 100%;
@@ -8,7 +8,12 @@ h1 {
 }
 span {
   display: block;
-  margin: 10px;
+  margin: 20px;
+  padding: 10px;
+  text-align: center;
+}
+.title {
+  margin: 0;
 }
 
 .func_button{
@@ -18,14 +23,27 @@ span {
 .word {
   width: 16%;
   float: left;
-  margin: 3px 2%;
+  margin: 2px 2%;
   display: flex;
+  padding: 0;
+  border: none;
+}
+.border {
+  border: 2px solid #aaa6;
+  border-radius: 10px;
 }
 .block {
   margin-top: 10px;
-  border: 2px solid #666;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border: 2px solid #aaa6;
   border-radius: 10px;
+}
+.tri {
+  font-size: 16px;
 }
 view {
   clear: both;
+  margin-bottom: 10px;
 }

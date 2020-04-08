@@ -2,28 +2,22 @@
 <view class='page'>
 <h1>练习阶段{{phase}}</h1>
 <div wx:if="{{phase == 1}}">
-<span>在屏幕中看到的是本次实验中用到的词语，情尽可能都熟悉一遍，这些词语将在后面的语音识别任务中用到。词语分为二字词三字词，生物类和非生物类。所有的词语均为名词。这部分大约需要3分钟左右。</span>
+<span class="border">在屏幕中看到的是本次实验中用到的词语，情尽可能都熟悉一遍，这些词语将在后面的语音识别任务中用到。词语分为二字词三字词，生物类和非生物类。所有的词语均为名词。这部分大约需要3分钟左右。</span>
 <view class="block">
-<span>二字词（生命）</span>
-<span class='word' wx:for="{{word_double_a}}" wx:key="index">{{item}}</span>
+<span class="title">二字词</span>
+<span class='word' wx:for="{{word_double}}" wx:key="index">{{item}}</span>
+<view></view>
 </view>
 <view class="block">
-<span>二字词（非生命）</span>
-<span class='word' wx:for="{{word_double_i}}" wx:key="index">{{item}}</span>
-</view>
-<view class="block">
-<span>三字词（生命）</span>
-<span class='word' wx:for="{{word_triple_a}}" wx:key="index">{{item}}</span>
-</view>
-<view class="block">
-<span>三字词（非生命）</span>
-<span class='word' wx:for="{{word_triple_i}}" wx:key="index">{{item}}</span>
+<span class="title">三字词</span>
+<span class='word tri' wx:for="{{word_triple}}" wx:key="index">{{item}}</span>
+<view></view>
 </view>
 <button class="func_button" bindtap="next">下一部分</button>
 </div>
 <div wx:if="{{phase == 2}}">
 <button>▶️ Play Audio</button>
-<span>在屏幕上方的方框中是实验需要的的语音，请点击播放箭头开始播放语音。目标词语被噪音掩盖住，语音呈现时间很短，请尽可能集中精力进行识别 ，并将听到的词语的拼音填写在下面的横线上。词语可能为二字词或者是三字词。练习完后可以选择继续练习，或者直接进入测试阶段。</span>
+<span class="border">在屏幕上方的方框中是实验需要的的语音，请点击播放箭头开始播放语音。目标词语被噪音掩盖住，语音呈现时间很短，请尽可能集中精力进行识别 ，并将听到的词语的拼音填写在下面的横线上。词语可能为二字词或者是三字词。练习完后可以选择继续练习，或者直接进入测试阶段。</span>
 <button class="func_button" bindtap="prev">上一部分</button>
 <button class="func_button" bindtap="next">下一部分</button>
 <button class="func_button" bindtap="bindBegin">我可以了！</button>
@@ -31,9 +25,9 @@
 <div wx:if="{{phase == 3}}">
 <h1>例子{{sample}}</h1>
   <audio src="{{src}}" id="testAudio" bindplay="funplay" bindpause="funpause" bindtimeupdate="funtimeupdate" bindended="funended" binderror="funerror"></audio>
-  <button bindtap="audioPlay">▶️ Play Audio</button>
+  <button class="func_button" bindtap="audioPlay">▶️ Play Audio</button>
   <span wx:if="{{display}}" style="text-align: center">{{chinese}}</span>
-  <button bindtap="showResult">显示结果</button>
+  <button class="func_button" style="padding-bottom: 10px" bindtap="showResult">显示结果</button>
 
   <button wx:if="{{sample == 1}}" class="func_button" bindtap="prev">上一部分</button>
   <button wx:if="{{sample > 1}}" class="func_button" bindtap="prevSample">上个例子</button>

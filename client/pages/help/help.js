@@ -1,11 +1,13 @@
 // pages/help/help.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    random: app.globalData.random,
+    click: 0
   },
 
   /**
@@ -13,9 +15,38 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({ title: '噪音环境下的语音测试' });
-  
+    this.setData({random: app.globalData.random});
   },
-
+  bindClear: function() {
+    app.globalData.trail = 1;
+    app.globalData.block = 1;
+    app.globalData.trail_seq = [];
+    app.globalData.block_seq = [];
+    app.globalData.answer = {};
+    app.globalData.finished = false;
+    app.globalData.total_accord = 0;
+    app.globalData.correct_accord = 0;
+    app.globalData.total_inaccord = 0;
+    app.globalData.correct_inaccord = 0;
+    app.globalData.word_double = [];
+    app.globalData.word_triple = [];
+    wx.showToast({
+      title: '缓存已清空',
+      icon: 'none',
+      duration: 1000
+    })
+  },
+  bindRandom: function() {
+    app.globalData.random = !app.globalData.random;
+    this.setData({random: app.globalData.random, precise: app.globalData.precise, click: 0});
+  },
+  bindPrecise: function() {
+    this.data.click += 1;
+    if (this.data.click > 10) {
+      app.globalData.precise = !app.globalData.precise;
+      this.setData({random: app.globalData.random, precise: app.globalData.precise, click: 0});
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

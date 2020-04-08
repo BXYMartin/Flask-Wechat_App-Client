@@ -1,1 +1,17 @@
 /* pages/help/help.wxss */
+h1 {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+span {
+  display: block;
+  margin: 10px;
+}
+
+.func_button{
+  width:90%;
+  margin: 0 auto;
+}
