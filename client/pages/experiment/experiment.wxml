@@ -1,11 +1,16 @@
-<view class='page'>
-<h1>指导语</h1>
-<span>非常感谢您来参加本次实验，请认真阅读指导语。</span>
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-blue"></text>指导语
+    </view>
+  </view>
+  <view class="padding-sm text-center bg-white">
+    <view class="solid-bottom text-xl padding">
+    <text class="text-black text-bold">非常感谢您来参加本次实验</text>
+    </view>
+    <view class="padding">这是一个噪音环境下语言识别的测验，在接下来的任务中，将呈现出一系列噪音中的词语，所以请务必取消手机的静音状态，在不干扰其他人的安静环境下使用合适的音量进行测试。请认真聆听，并尽可能多的在下面的方框中填入你所听到的词语的拼音。实验共分为三个阶段，前面两个阶段是学习阶段，学习完后会有五分钟左右的休息时间，然后正式进入测试阶段。本实验的难度较高，所以请尽可能的填写听到的拼音，每空填写正确得一分。</view>
+  </view>
 
-<span>这是一个噪音环境下语言识别的测验，在接下来的任务中，将呈现出一系列噪音中的词语。请认真聆听，并尽可能多的在下面的方框中填入你所听到的词语的拼音。实验共分为三个阶段，前面两个阶段是学习阶段，学习完后会有五分钟左右的休息时间，然后正式进入测试阶段。本实验的难度较高，所以请尽可能的填写听到的拼音，得分与拼音填写顺序无关。</span>
-
-<span>阅读完毕后请点击开始</span>
-
-<button class="func_button" bindtap="bindPrepare">我们开始吧！</button>
-
+<view class="padding-sm flex flex-direction">
+  <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="bindPrepare">我们开始吧！</button>
 </view>
+

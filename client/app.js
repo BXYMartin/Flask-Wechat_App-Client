@@ -25,7 +25,7 @@ App({
     total_accord: 0,
     correct_inaccord: 0,
     total_inaccord: 0,
-    precise: false,
+    precise: true,
     word_double: [],
     word_triple: []
   }

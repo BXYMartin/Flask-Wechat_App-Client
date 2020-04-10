@@ -22,10 +22,10 @@ width: 100%;
 
 }
 .tr:nth-child(odd){
-background: #fceecf;
+background: #fff;
 }
 .tr:nth-child(even){
-background: #f8dca9;
+background: #eee;
 }
 .th {
 font-weight: 400;

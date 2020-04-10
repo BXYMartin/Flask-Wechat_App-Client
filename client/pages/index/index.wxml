@@ -8,6 +8,7 @@
     </block>
   </view>
   <text>\n</text>
+  <button wx:if="{{ block != 1 || trail != 1 }}" class="func_button" bindtap="bindContinue">继续实验 {{block}}.{{trail}}</button>
   <button class="func_button" bindtap="bindExperiment">开始实验</button>
   <button class="func_button" bindtap="bindMoe">排行榜</button>
   <button class="func_button" bindtap="bindHelp">设置</button>

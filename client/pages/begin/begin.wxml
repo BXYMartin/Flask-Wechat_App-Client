@@ -1,6 +1,32 @@
 <!--pages/begin/begin.wxml-->
-<view class='page'>
-<h1>测试阶段</h1>
-<span>在屏幕上方的方框中是实验需要的的语音，请点击播放箭头开始播放语音。起初有6s的节奏刺激，之后呈现出的仍然是被噪音掩盖的目标词语。语音呈现时间很短，请尽可能集中精力进行识别 ，并将听到的词语的拼音填写在下面的横线上。每段语音均为6个字，但是组成可能为三个二字词或者两个三字词。实验分为四个部分，每个部分之间可以有2min的休息时间。</span>
-<button class="func_button" bindtap="bindStart">我们正式开始吧！</button>
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange"></text>测试阶段
+    </view>
+  </view>
+
+<view class="padding-sm text-center bg-white">
+    <view class="padding">在屏幕上方的方框中是实验需要的的语音，请点击播放箭头开始播放语音。起初有6s的节奏刺激，之后呈现出的仍然是被噪音掩盖的目标词语。语音呈现时间很短，请尽可能集中精力进行识别 ，并将听到的词语的拼音填写在下面的横线上。</view>
+  </view>
+
+  <view style="margin-top: 20rpx" class="padding-sm text-center bg-white">
+    <view class="padding">每段语音均为<text>6</text>个字，每段语音<b>只播放一次</b>，需要填写<b>第<text>二</text>个和第<text>五</text>个字的拼音，不需要声调，大小写不敏感</b>。
+    <span>填写示例: 
+    <view class="cu-capsule radius">
+    <view class="cu-tag bg-grey">绿</view>
+    <view class="cu-tag line-grey">lv</view>
+    </view>
+    <view class="cu-capsule radius">
+    <view class="cu-tag bg-grey">王</view>
+    <view class="cu-tag line-grey">Wang</view>
+    </view>
+    </span></view>
+  </view>
+
+  <view style="margin-top: 20rpx" class="padding-sm text-center bg-white">
+    <view class="padding">实验分为四个部分，每个部分之间可以有 <b>2 分钟</b> 的休息时间。</view>
+  </view>
+
+  <view class="padding-sm flex flex-direction">
+  <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="bindStart">我们正式开始吧！</button>
 </view>

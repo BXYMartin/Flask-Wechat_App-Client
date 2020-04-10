@@ -19,3 +19,9 @@ span {
   width:90%;
   margin: 0 auto;
 }
+b {
+  font-weight: 600;
+}
+text {
+  color: red;
+}

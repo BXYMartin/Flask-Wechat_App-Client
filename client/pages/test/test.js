@@ -5,13 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name: "Loading",
+    name: "加载中",
     src: "",
     author: "Catherine Zhang",
     input: "",
     display: true,
-    play: "Play Audio",
-    click: 0
+    play: "播放音频",
+    click: 0,
+    next: false
   },
   unlock: function() {
     this.data.click += 1;
@@ -60,6 +61,10 @@ Page({
         }
       }
     }
+    // Progress Calc
+    var true_progress = String(parseInt(100*(app.globalData.correct_accord+app.globalData.correct_inaccord)/(app.globalData.total_trail*app.globalData.total_block*2))) + '%';
+    var error_progress = String(parseInt(100*(app.globalData.total_accord+app.globalData.total_inaccord - app.globalData.correct_accord-app.globalData.correct_inaccord)/(app.globalData.total_trail*app.globalData.total_block*2))) + '%';
+
     // 使用 wx.createAudioContext 获取 audio 上下文 context
     var that=this
     wx.request({
@@ -68,8 +73,9 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       method: 'POST',
       success: function (res) {
-        that.setData({ cue: res.data.cue, word: res.data.word, correct_inaccord: app.globalData.correct_inaccord, correct_accord: app.globalData.correct_accord, total_accord: app.globalData.total_accord, total_inaccord: app.globalData.total_inaccord, answer: JSON.stringify(app.globalData.answer), block_seq: app.globalData.block_seq, trail_seq: app.globalData.trail_seq, chinese: res.data.chinese, pinyin: res.data.pinyin, display: true, name: res.data.name, src: app.globalData.server + 'wav/' + res.data.src, input: "", block: app.globalData.block, trail: app.globalData.trail});
+        that.setData({ cue: res.data.cue, word: res.data.word, correct_inaccord: app.globalData.correct_inaccord, correct_accord: app.globalData.correct_accord, total_accord: app.globalData.total_accord, total_inaccord: app.globalData.total_inaccord, answer: JSON.stringify(app.globalData.answer), block_seq: app.globalData.block_seq, trail_seq: app.globalData.trail_seq, chinese: res.data.chinese, pinyin: res.data.pinyin, display: true, name: res.data.name, src: app.globalData.server + 'wav/' + res.data.src, input: "", block: app.globalData.block, trail: app.globalData.trail, next: true, true_progress: true_progress, error_progress: error_progress });
         that.audioCtx = wx.createAudioContext('testAudio');
+        that.audioCtx.obeyMuteSwitch = false;
       },
       fail: function (e) {
         console.log(e);
@@ -82,7 +88,8 @@ Page({
     })
   },
   audioPlay: function () {
-    this.audioCtx.play()
+    this.audioCtx.play();
+    this.setData({play: '音频播放中'});
   },
   audioPause: function () {
     this.audioCtx.pause()
@@ -99,7 +106,7 @@ Page({
   funtimeupdate: function(u){
       console.log(u.detail.currentTime);
       console.log(u.detail.duration);
-      this.setData({play: parseInt(u.detail.currentTime) + ' s'});
+      // this.setData({play: parseInt(u.detail.currentTime) + ' s'});
   },
   funended: function(){
       console.log("audio end");
@@ -122,24 +129,46 @@ Page({
     app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]][app.globalData.trail_seq[app.globalData.trail-1]][res.target.id] = res.detail.value;
   },
   next: function(){
+    var show_list = [2, 5];
+    for (var n = 0; n < show_list.length; n++) {
+      var i = show_list[n];
+      if (!(app.globalData.block_seq[app.globalData.block-1] in app.globalData.answer) || !(app.globalData.trail_seq[app.globalData.trail-1] in app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]]) || !(i in app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]][app.globalData.trail_seq[app.globalData.trail-1]])) {
+        wx.showToast({
+          title: '请填写后再提交',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      }
+    }
+    this.data.next = false;
+    this.setData(this.data);
     // Calculate Result
     if (!app.globalData.finished) {
       var pinyin_list = this.data.pinyin.split("|");
-      for (var i = 1; i <= 6; i++) {
+      for (var n = 0; n < show_list.length; n++) {
+        var i = show_list[n];
         if (app.globalData.precise) {
-          if (app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]][app.globalData.trail_seq[app.globalData.trail-1]][i] == pinyin_list[i - 1].slice(0, -1)) {
-            if (this.data.cue == this.data.word) {
-              app.globalData.correct_accord += 1;
+          if (i in app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]][app.globalData.trail_seq[app.globalData.trail-1]]) {
+            var str = app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]][app.globalData.trail_seq[app.globalData.trail-1]][i];
+              str = str.replace(/\s*/g,"");
+              str = str.toLowerCase();
+            if (str == pinyin_list[i - 1].slice(0, -1)) {
+              if (this.data.cue == this.data.word) {
+                app.globalData.correct_accord += 1;
+              }
+              else {
+                app.globalData.correct_inaccord += 1;
+              }   
             }
-            else {
-              app.globalData.correct_inaccord += 1;
-            }
-            
           }
         }
         else {
           for (var key in app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]][app.globalData.trail_seq[app.globalData.trail-1]]) {
-            if (app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]][app.globalData.trail_seq[app.globalData.trail-1]][key] == pinyin_list[i - 1].slice(0, -1)) {
+            var str = app.globalData.answer[app.globalData.block_seq[app.globalData.block-1]][app.globalData.trail_seq[app.globalData.trail-1]][key];
+            str = str.replace(/\s*/g,"");
+            str = str.toLowerCase();
+            if (str == pinyin_list[i - 1].slice(0, -1)) {
               if (this.data.cue == this.data.word) {
                 app.globalData.correct_accord += 1;
               }
@@ -190,7 +219,6 @@ Page({
             })
           },
           fail: function (e) {
-            console.log(e);
             wx.showToast({
               title: '结果发送失败',
               icon: 'none',
@@ -219,6 +247,10 @@ Page({
     else {
       app.globalData.trail = app.globalData.trail + 1;
     }
+    // Calc Progress
+    var true_progress = String(parseInt(100*(app.globalData.correct_accord+app.globalData.correct_inaccord)/(app.globalData.total_trail*app.globalData.total_block*2))) + '%';
+    var error_progress = String(parseInt(100*(app.globalData.total_accord+app.globalData.total_inaccord - app.globalData.correct_accord-app.globalData.correct_inaccord)/(app.globalData.total_trail*app.globalData.total_block*2))) + '%';
+
     var that=this
     wx.request({
       url: app.globalData.server + 'get_trail',
@@ -226,8 +258,9 @@ Page({
       header: { 'content-type': 'application/x-www-form-urlencoded' },
       method: 'POST',
       success: function (res) {
-        that.setData({ cue: res.data.cue, word: res.data.word, correct_inaccord: app.globalData.correct_inaccord, correct_accord: app.globalData.correct_accord, total_accord: app.globalData.total_accord, total_inaccord: app.globalData.total_inaccord, answer: JSON.stringify(app.globalData.answer), block_seq: app.globalData.block_seq, trail_seq: app.globalData.trail_seq, click: 0, chinese: res.data.chinese, pinyin: res.data.pinyin, play: "Play Audio", display: true, name: res.data.name, src: app.globalData.server + 'wav/' + res.data.src, input: "", block: app.globalData.block, trail: app.globalData.trail});
+        that.setData({ cue: res.data.cue, word: res.data.word, correct_inaccord: app.globalData.correct_inaccord, correct_accord: app.globalData.correct_accord, total_accord: app.globalData.total_accord, total_inaccord: app.globalData.total_inaccord, answer: JSON.stringify(app.globalData.answer), block_seq: app.globalData.block_seq, trail_seq: app.globalData.trail_seq, click: 0, chinese: res.data.chinese, pinyin: res.data.pinyin, play: "Play Audio", display: true, name: res.data.name, src: app.globalData.server + 'wav/' + res.data.src, input: "", block: app.globalData.block, trail: app.globalData.trail, next: true, true_progress: true_progress, error_progress: error_progress });
         that.audioCtx = wx.createAudioContext('testAudio');
+        that.audioCtx.obeyMuteSwitch = false;
       },
       fail: function (e) {
         console.log(e);

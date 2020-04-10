@@ -7,6 +7,7 @@ Page({
    */
   data: {
     random: app.globalData.random,
+    precise: app.globalData.precise,
     click: 0
   },
 
@@ -30,22 +31,32 @@ Page({
     app.globalData.correct_inaccord = 0;
     app.globalData.word_double = [];
     app.globalData.word_triple = [];
+    this.hideModal();
     wx.showToast({
       title: '缓存已清空',
       icon: 'none',
       duration: 1000
-    })
+    });
   },
-  bindRandom: function() {
-    app.globalData.random = !app.globalData.random;
+  bindRandom: function(e) {
+    app.globalData.random = e.detail.value;
     this.setData({random: app.globalData.random, precise: app.globalData.precise, click: 0});
   },
-  bindPrecise: function() {
-    this.data.click += 1;
-    if (this.data.click > 10) {
-      app.globalData.precise = !app.globalData.precise;
-      this.setData({random: app.globalData.random, precise: app.globalData.precise, click: 0});
-    }
+  bindPrecise: function(e) {
+    app.globalData.precise = e.detail.value;
+    this.setData({random: app.globalData.random, precise: app.globalData.precise, click: 0});
+  },
+  showModal(e) {
+    this.setData({
+      random: app.globalData.random, precise: app.globalData.precise, click: 0,
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      random: app.globalData.random, precise: app.globalData.precise, click: 0,
+      modalName: null
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

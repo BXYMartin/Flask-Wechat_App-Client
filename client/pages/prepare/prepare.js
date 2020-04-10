@@ -8,7 +8,14 @@ Page({
   data: {
     phase: 1,
     sample: 1,
-    display: false
+    display: false,
+    numList: [{
+      name: '词库'
+    }, {
+      name: '界面'
+    }, {
+      name: '音频'
+    } ]
   },
   next: function() {
     this.data.phase += 1;
@@ -95,8 +102,8 @@ Page({
       },
     });
   },
-  showResult: function() {
-    this.setData({ display: true });
+  showResult: function(e) {
+    this.setData({ display: e.detail.value });
   },
   audioPlay: function () {
     this.audioCtx.play()

@@ -1,49 +1,7 @@
 /* pages/prepare/prepare.wxss */
-h1 {
-  font-size: 24px;
-  font-weight: 400;
-  text-align: center;
-  width: 100%;
-  display: block;
-}
-span {
-  display: block;
-  margin: 20px;
-  padding: 10px;
-  text-align: center;
-}
-.title {
+button {
   margin: 0;
 }
-
-.func_button{
-  width:90%;
-  margin: 10px auto;
-}
-.word {
-  width: 16%;
-  float: left;
-  margin: 2px 2%;
-  display: flex;
-  padding: 0;
-  border: none;
-}
-.border {
-  border: 2px solid #aaa6;
-  border-radius: 10px;
-}
-.block {
-  margin-top: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  border: 2px solid #aaa6;
-  border-radius: 10px;
-}
-.tri {
-  font-size: 16px;
-}
-view {
-  clear: both;
-  margin-bottom: 10px;
+.padding-lrsm {
+  padding: 0 20rpx 0 20rpx;
 }

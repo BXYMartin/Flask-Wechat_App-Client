@@ -7,7 +7,9 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    block: app.globalData.block,
+    trail: app.globalData.trail
   },
   bindExperiment: function() {
     if (app.globalData.userInfo==null){
@@ -20,6 +22,11 @@ Page({
     }
     wx.navigateTo({
       url: '../experiment/experiment',
+    })
+  },
+  bindContinue: function() {
+    wx.navigateTo({
+      url: '../test/test',
     })
   },
   bindMoe: function () {
