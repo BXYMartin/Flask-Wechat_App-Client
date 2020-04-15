@@ -9,7 +9,9 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     block: app.globalData.block,
-    trail: app.globalData.trail
+    trail: app.globalData.trail,
+    loadModal: true,
+    version: app.globalData.version
   },
   bindExperiment: function() {
     if (app.globalData.userInfo==null){
@@ -71,44 +73,47 @@ Page({
   },
 
   onShow: function () {
+
     var that = this
     if (app.globalData.openid==null){
       wx.login({
         success: res => {
-          wx.request({
-            url: app.globalData.server + 'login',
-            data: { code: res.code },
-            header: { 'content-type': 'application/x-www-form-urlencoded' },
-            method: 'POST',
-            success: function (res) {
-              app.globalData.openid = res.data
-              wx.request({
-                url: app.globalData.server + 'get_user_scores',
-                data: { openid: app.globalData.openid },
-                header: { 'content-type': 'application/x-www-form-urlencoded' },
-                method: 'POST',
-                success: function (res) {
-                  app.globalData.user_score_info = res.data
-                },
-                fail: function () {
-                  wx.showToast({
-                    title: '用户信息获取失败',
-                    icon: 'none',
-                    duration: 2000
-                  })
-                },
-              })
-            },
-            fail: function () {
-              wx.showToast({
-                title: '用户ID获取失败',
-                icon: 'none',
-                duration: 2000
-              })
-            },
-          })
+          if (app.globalData.online) {
+            wx.request({
+              url: app.globalData.server + 'login',
+              data: { code: res.code },
+              header: { 'content-type': 'application/x-www-form-urlencoded' },
+              method: 'POST',
+              success: function (res) {
+                app.globalData.openid = res.data;
+                that.data.loadModal = false;
+                that.setData(that.data);
+              },
+              fail: function () {
+                wx.showToast({
+                  title: '使用离线模式中',
+                  icon: 'none',
+                  duration: 2000
+                });
+                app.globalData.online = false;
+                that.data.loadModal = false;
+                that.setData(that.data);
+              },
+            })
+          }
+          else {
+            that.data.loadModal = false;
+            that.setData(that.data);
+            wx.showToast({
+              title: '使用离线模式中',
+              icon: 'none',
+              duration: 2000
+            });
+          }
         },
         fail: function () {
+          that.data.loadModal = false;
+          that.setData(that.data);
           wx.showToast({
             title: '登录失败',
             icon: 'none',

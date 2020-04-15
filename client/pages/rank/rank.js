@@ -25,7 +25,8 @@ Page({
           title: '排名获取失败',
           icon: 'none',
           duration: 2000
-        })
+        });
+        app.globalData.online = false;
       },
     })
   

@@ -12,3 +12,7 @@ span {
   text-align: center;
   margin: 10px;
 }
+.share-image {
+  width: 375px;
+  height: 540px;
+}

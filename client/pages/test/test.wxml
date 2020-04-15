@@ -9,7 +9,6 @@
     <text class="text-black text-bold">音频 {{trail}}</text>
     </view>
     <view class="padding text-grey" style="padding-top: 0">
-    <audio wx:if="{{display}}" name="{{name}}" author="{{author}}" src="{{src}}" id="testAudio" bindplay="funplay" bindpause="funpause" bindtimeupdate="funtimeupdate" bindended="funended" binderror="funerror"></audio>
    <button wx:if="{{display}}" bindtap="audioPlay"><text class="cuIcon-voice"></text> {{play}}</button>
     <h1 wx:if="{{!display}}">音频播放完毕，请作答并前往下一题</h1>
     </view>

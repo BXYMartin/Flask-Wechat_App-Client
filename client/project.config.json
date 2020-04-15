@@ -24,7 +24,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.10.3",
 	"appid": "wx77c450b96ce42ff4",
 	"projectname": "listening-test",
 	"isGameTourist": false,

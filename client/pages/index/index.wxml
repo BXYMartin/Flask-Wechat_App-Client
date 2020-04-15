@@ -17,3 +17,11 @@
   <text>张纯洁的毕业设计</text>
   <text style="opacity: 0.2; font-size: 12px">Created By BXYMartin</text>
 </view>
+
+<text style="opacity: 0.2; font-size: 12px;position: absolute;display: block;right: 0;bottom: 0;margin: 20rpx;">Version {{version}}</text>
+
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+  <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+  <image src='/images/logo.png' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>请稍候</view>
+</view>

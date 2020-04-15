@@ -9,9 +9,42 @@
         <view class="solid-bottom text-xl padding">
         <text class="text-black text-bold">提交成功</text>
         </view>
+        <view wx:if="{{!online}}" class="padding">请将图片和剪贴板的内容发送给张纯洁</view>
         <view class="padding">感谢您的参与！</view>
       </view>
   </view>
 </view>
 </view>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-green"></text> 海报分享
+    </view>
+  </view>
+
+  <view class="padding-sm text-center bg-white">
+    <image src="{{shareImage?shareImage:'/images/background.jpeg'}}" class="share-image"></image>
+    <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage"/>
+
+
+    <view class="flex flex-direction">
+    <view class="flex p-xs margin-bottom-sm mb-sm">
+          <view style="margin-right: 2px;text-align: center;" class="flex-twice radius"><button class="cu-btn bg-grey" style="width: 100%;" bindtap="eventDraw">重新绘制</button></view>
+          <view style="margin-left: 2px;text-align: center;"  class="flex-twice radius"><button class="cu-btn bg-green" style="width: 100%;" bindtap="eventSave">保存图片</button></view>
+    </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!online}}" class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-green"></text> 答案文本
+    </view>
+  </view>
+
+<view wx:if="{{!online}}" class="padding-sm text-center bg-white">
+<view class="padding-sm flex flex-direction">
+  <button class="cu-btn bg-blue margin-tb-sm lg" bindtap="copyAnswer">复制文本</button>
+</view>
+</view>
+
 

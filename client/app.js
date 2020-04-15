@@ -6,10 +6,10 @@ App({
     wx.setNavigationBarTitle({ title: '噪音环境下的语音测试' });
   },
   globalData: {
+    version: "2.0.0",
     userInfo: null,
     openid:null,
     server:'https://c251266o06.zicp.vip/',
-    //server: 'http://rabienrose.iicp.net:21070/',
     user_score_info:null,
     cur_article_info:null,
     answer: {},
@@ -27,6 +27,8 @@ App({
     total_inaccord: 0,
     precise: true,
     word_double: [],
-    word_triple: []
+    word_triple: [],
+    online: true,
+    type: '.aac'
   }
 })
